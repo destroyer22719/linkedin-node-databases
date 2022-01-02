@@ -7,11 +7,7 @@ const config = require('../config');
 const App = require('../app');
 
 async function connectToMongoose() {
-  return mongoose.connect(config.mongodb.url, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    usecreateIndex: true,
-  });
+  return mongoose.connect(config.mongodb.url);
 }
 
 /* Logic to start the application */
