@@ -1,9 +1,27 @@
 #!/usr/bin/env node
 
 const http = require('http');
-
+const Redis = require("ioredis");
 const config = require('../config');
 const App = require('../app');
+
+function connectToRedis() {
+  const redis = new Redis();
+  
+  redis.on("connect", () => {
+    console.info("Successfully connected to Redis");
+  });
+
+  redis.on("error", (err) => {
+    console.error(err);
+    process.exit(1);
+  });
+
+  return redis;
+}
+
+const redis = connectToRedis();
+config.redis.client = redis;
 
 /* Logic to start the application */
 const app = App(config);
