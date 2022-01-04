@@ -2,10 +2,7 @@
 
 const http = require('http');
 const Redis = require("ioredis");
-const config = require('../config');
-const App = require('../app');
 const mongoose = require("mongoose");
-
 const config = require('../config');
 const App = require('../app');
 
