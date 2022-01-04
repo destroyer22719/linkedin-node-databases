@@ -4,6 +4,10 @@ const http = require('http');
 const Redis = require("ioredis");
 const config = require('../config');
 const App = require('../app');
+const mongoose = require("mongoose");
+
+const config = require('../config');
+const App = require('../app');
 
 function connectToRedis() {
   const redis = new Redis();
@@ -22,6 +26,12 @@ function connectToRedis() {
 
 const redis = connectToRedis();
 config.redis.client = redis;
+
+
+
+async function connectToMongoose() {
+  return mongoose.connect(config.mongodb.url);
+}
 
 /* Logic to start the application */
 const app = App(config);
@@ -62,5 +72,9 @@ function onListening() {
 }
 server.on('error', onError);
 server.on('listening', onListening);
+
+connectToMongoose().then(() => {
+  console.log("Succesfully connected to MongoDB")
+}).catch(error => console.error(error));
 
 server.listen(port);

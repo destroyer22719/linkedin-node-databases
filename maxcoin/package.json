@@ -10,7 +10,11 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.20.0",
+<<<<<<< HEAD
     "ioredis": "^4.28.2"
+=======
+    "mongoose": "^6.1.4"
+>>>>>>> mongoose
   },
   "devDependencies": {
     "eslint": "^7.10.0",
